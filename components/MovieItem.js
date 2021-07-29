@@ -1,0 +1,69 @@
+import React from 'react'
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import { img_300 } from "../config/imgConfig"
+import Badge from '@material-ui/core/Badge';
+
+const useStyles = makeStyles(() => ({
+    root: {
+        textAlign: "center",
+        position: "relative",
+    },
+    loading: {
+        width: "100%",
+        height: "100%",
+        backgroundColor: "gray"
+    },
+    title: {
+        fontSize: "16px",
+        position: "absolute",
+        zIndex: 2,
+        left: 5,
+        right: 5,
+        bottom: 2
+    },
+    titleOverlay: {
+        width: "100%",
+        height: 150,
+        position: "absolute",
+        bottom: 0,
+        backgroundImage: "linear-gradient( transparent,black)"
+    },
+    container: {
+        boxShadow: " 0px 10px 18px #000000",
+        position: "relative",
+        margin: "0 auto",
+        width: "80%"
+    },
+    rating: {
+        position: "absolute",
+        backgroundColor: "#FFC947",
+        fontWeight: 700,
+        color: "black",
+        width: 45,
+        textAlign: "center",
+        top: 0,
+        left: 0
+    }
+}));
+
+function MovieItem(props) {
+    const classes = useStyles();
+    const titleName = props.item.title ? props.item.title : props.item.original_name
+    return (
+        <Grid item lg={2} md={3} sm={4} xs={6} className={classes.root}>
+            <div className={classes.container}>
+                <img
+                    width="100%" src={`${img_300}${props.item.poster_path}`} alt={`${titleName}`} />
+                <div className={classes.titleOverlay} />
+
+                <h1 className={classes.title}>{titleName}</h1>
+                <span className={classes.rating}>{props.item.vote_average}</span>
+            </div>
+
+
+        </Grid>
+    )
+}
+
+export default MovieItem

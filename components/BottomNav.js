@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     root: {
         width: "100%",
         position: "fixed",
+        zIndex: 99,
         bottom: 0,
         backgroundColor: "#171717",
 
@@ -39,7 +40,7 @@ export default function BottomNav() {
             showLabels
             className={classes.root}>
 
-            <Link href="/movies">
+            <Link href="/movies/1">
                 <BottomNavigationAction
                     onClick={() => setClicked({ b1: true, b2: false, b3: false })}
                     showLabel={true}
@@ -47,7 +48,7 @@ export default function BottomNav() {
                     label="Movies" icon={<TheatersIcon />} />
             </Link>
 
-            <Link href="/trending">
+            <Link href="/trending/1">
                 <BottomNavigationAction
                     onClick={() => setClicked({ b1: false, b2: true, b3: false })}
                     className={clicked.b2 ? classes.clickedColor : classes.action}
@@ -55,7 +56,7 @@ export default function BottomNav() {
                     label="Trending" icon={<WhatshotIcon />} />
             </Link>
 
-            <Link href="/series">
+            <Link href="/series/1">
                 <BottomNavigationAction
                     onClick={() => setClicked({ b1: false, b2: false, b3: true })}
                     className={clicked.b3 ? classes.clickedColor : classes.action}

@@ -4,9 +4,9 @@ module.exports = {
     return [
       {
         source: '/',
-        destination: '/trending',
-        permanent: true
-      }
+        destination: '/trending/1',
+        permanent: true,
+      },
     ]
-  }
+  },
 }
