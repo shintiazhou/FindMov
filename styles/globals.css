@@ -19,3 +19,6 @@ html {
   background-color: #171717;
   color: white;
 }
+ul {
+  list-style: none;
+}

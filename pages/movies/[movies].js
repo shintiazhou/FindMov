@@ -1,6 +1,8 @@
 import Head from 'next/head'
+import { useState, useEffect } from "react"
 
 export default function Movies() {
+
     return (
         <div >
             <Head>
@@ -9,6 +11,7 @@ export default function Movies() {
             </Head>
             <header>
                 <h1>Movies</h1>
+
             </header>
 
         </div>

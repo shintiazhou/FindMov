@@ -3,22 +3,40 @@ import Head from 'next/head'
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import MovieCollection from "../../components/MovieCollection"
+import styles from "../../styles/trending.module.css"
+
 
 export default function Home() {
     const router = useRouter()
     const [page, setPage] = useState(null)
+    const [timeWindow, setTimeWindow] = useState("day")
+
+    const secondPageMerge = (x) => {
+        const value = parseInt(x)
+        const firstPage = (value - 1) + value
+        const secondPage = value * 2
+        return [firstPage, secondPage]
+    }
+    const pages = secondPageMerge(router.query.trending)
+    const [firstPage, secPage] = pages
 
     useEffect(() => {
 
         const fetchApi = async () => {
-            const req = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=b4d716b5b9583975e5b0f9f8144bbdca&page=${router.query.trending}`)
-            const page = await req.json()
-            setPage(page)
+            const req = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${firstPage}`)
+            const page1 = await req.json()
+
+            const req2 = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${secPage}`)
+            const page2 = await req2.json()
+
+            if (req) {
+                setPage(page1.results.concat(page2.results))
+            }
+
         }
         fetchApi()
-
-    }, [router.query.trending])
-    console.log(page)
+        return () => setPage(null)
+    }, [router.query.trending, timeWindow])
     return (
         <div >
             <Head>
@@ -26,10 +44,16 @@ export default function Home() {
                 <meta name="description" content="Trending Movies Your Daily Dose Of Latest popular movies" />
             </Head>
             <header>
-                <h1>Trending </h1>
+                <h1 className={styles.title}>Trending </h1>
+                <ul className={styles.toggleContainer}>
+                    <li className={timeWindow === "day" ? styles.selected : styles.toggle}
+                        onClick={() => setTimeWindow("day")}>Today</li>
+                    <li className={timeWindow === "week" ? styles.selected : styles.toggle}
+                        onClick={() => setTimeWindow("week")}>This week</li>
+                </ul>
             </header>
             <main>
-                {page ? <MovieCollection collection={page.results} /> :
+                {page ? <MovieCollection collection={page} /> :
                     <h1>Loading</h1>
                 }
             </main>

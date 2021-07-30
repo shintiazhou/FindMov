@@ -1,6 +1,7 @@
 //image sizes for tmdb
 export const img_300 = "https://image.tmdb.org/t/p/w300";
 export const img_500 = "https://image.tmdb.org/t/p/w500";
+export const img_1280 = "https://image.tmdb.org/t/p/w1280";
 
 // contentModal and singleContent
 export const unavailable =
@@ -13,3 +14,7 @@ export const unavailableLandscape =
 // For Carousel
 export const noPicture =
     "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg";
+
+//For loading
+export const loadingImg =
+    "https://i.ibb.co/cCPcChn/image-loading.gif"
