@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 function MovieItem(props) {
     const classes = useStyles();
     const titleName = props.item.title ? props.item.title : props.item.original_name
@@ -64,16 +65,18 @@ function MovieItem(props) {
     const [open, setOpen] = useState(false);
     const [itemInfo, setItemInfo] = useState(null)
 
+    //fake loading
     setTimeout(() => { setImage(props.item.poster_path ? `${img_300}${props.item.poster_path}` : unavailable) }, 1000)
 
     const typeAndId = itemInfo ? itemInfo.split(" ") : null
+
     return (
         <>
             <Grid item lg={2} md={3} sm={4} xs={6} className={classes.root}>
 
                 <div
                     onClick={(e) => {
-                        setItemInfo(e.target.offsetParent.id)
+                        setItemInfo(e.target.offsetParent.id) // get the id to pass it with props
                         setOpen(true)
                     }}
                     className={classes.container}

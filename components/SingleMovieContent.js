@@ -108,7 +108,6 @@ function SingleMovieContent(props) {
     const [content, setContent] = useState({})
     const [image, setImage] = useState(loadingImg)
 
-    setTimeout(() => { setImage(content.id ? `${img_300 + content.poster_path}` : unavailable) }, 500)
 
     useEffect(() => {
         if (props.arr) {
@@ -122,6 +121,9 @@ function SingleMovieContent(props) {
         return () => setContent({})
     }, [])
     console.log(content)
+
+    //fake loading
+    setTimeout(() => { setImage(content.id ? `${img_300 + content.poster_path}` : unavailable) }, 1500)
 
     const year = content.release_date && (content.release_date ? content.release_date.slice(0, 4) : content.first_air_date.slice(0, 4))
 

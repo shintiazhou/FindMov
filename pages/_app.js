@@ -2,6 +2,8 @@ import '../styles/globals.css'
 import Layout from "../components/Layout"
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
+// change default material ui color
+
 const theme = createTheme({
   palette: {
     primary: {

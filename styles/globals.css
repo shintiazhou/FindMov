@@ -9,7 +9,7 @@ body {
 }
 ::-webkit-scrollbar {
   width: 0; /* Remove scrollbar space */
-  background: transparent; /* Optional: just make scrollbar invisible */
+  background: transparent; /*make scrollbar invisible */
 }
 h2 {
   margin-bottom: -5px;

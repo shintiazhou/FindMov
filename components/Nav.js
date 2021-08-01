@@ -7,6 +7,7 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
 
+// just some material ui styles
 const useStyles = makeStyles((theme) => ({
 
     root: {
@@ -47,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -60,9 +60,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 export default function Nav() {
     const classes = useStyles();
-
     return (
         <div className={classes.root}>
             <AppBar position="fixed" color="secondary">

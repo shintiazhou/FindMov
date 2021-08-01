@@ -11,6 +11,7 @@ export default function Home() {
     const [page, setPage] = useState(null)
     const [timeWindow, setTimeWindow] = useState("day")
 
+    // basic math to merge first and second page so it shows more collection of movies
     const secondPageMerge = (x) => {
         const value = parseInt(x)
         const firstPage = (value - 1) + value
@@ -23,20 +24,22 @@ export default function Home() {
     useEffect(() => {
 
         const fetchApi = async () => {
+            // fetch first page to merge
             const req = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${firstPage}`)
             const page1 = await req.json()
-
+            // fetch second page to merge
             const req2 = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${secPage}`)
             const page2 = await req2.json()
-
+            // merge both page
             if (req) {
                 setPage(page1.results.concat(page2.results))
             }
 
         }
         fetchApi()
-        return () => setPage(null)
+        return () => setPage(null) // when unmount
     }, [router.query.trending, timeWindow])
+
     return (
         <div >
             <Head>
