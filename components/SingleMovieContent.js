@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             flexDirection: "row",
             alignItems: "flex-start",
-            textAlign: "left"
         },
     },
     background: {
@@ -48,12 +47,11 @@ const useStyles = makeStyles((theme) => ({
         height: "100%"
     },
     imgContainer: {
-        width: "30%",
-        [theme.breakpoints.down('xs')]: {
-            width: "60%",
-        },
-        [theme.breakpoints.up('md')]: {
-            marginRight: "30px"
+        width: "700px",
+        marginRight: "30px",
+        [theme.breakpoints.down('sm')]: {
+            width: "250px",
+            marginRight: "0",
         },
     },
     overlay: {
@@ -83,7 +81,10 @@ const useStyles = makeStyles((theme) => ({
     },
     info: {
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        [theme.breakpoints.up('md')]: {
+            textAlign: "left"
+        },
     },
     rating: {
         display: "flex",
@@ -94,7 +95,10 @@ const useStyles = makeStyles((theme) => ({
         borderBottom: "1px solid gray",
         "& > *": {
             margin: "2px"
-        }
+        },
+        [theme.breakpoints.up('md')]: {
+            justifyContent: "flex-start",
+        },
     }
 
 }));
@@ -119,7 +123,7 @@ function SingleMovieContent(props) {
     }, [])
     console.log(content)
 
-    const year = content.id && (content.release_date ? content.release_date.slice(0, 4) : content.first_air_date.slice(0, 4))
+    const year = content.release_date && (content.release_date ? content.release_date.slice(0, 4) : content.first_air_date.slice(0, 4))
 
     const duration = () => {
         const runtime = content.runtime;
