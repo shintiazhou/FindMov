@@ -33,13 +33,22 @@ const useStyles = makeStyles((theme) => ({
         position: "absolute"
     },
     background: {
-        opacity: ".05",
+        opacity: ".3",
         backgroundRepeat: "no-repeat",
         position: "absolute",
         backgroundPosition: "center",
         backgroundSize: "cover",
         width: "100%",
-        height: "100%"
+        height: "100%",
+        [theme.breakpoints.down('md')]: {
+            backgroundPosition: "10% 0%",
+            height: "80%",
+        },
+        [theme.breakpoints.down('xs')]: {
+            height: "90%",
+            backgroundPosition: "30% 0%",
+            opacity: ".1",
+        },
     },
     overlay: {
         backgroundImage: "linear-gradient(rgba(23,23,23,0) , rgba(23,23,23,1))",
@@ -61,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     imgContainer: {
-        width: "800px",
+        width: "300px",
         marginRight: "30px",
         [theme.breakpoints.down('sm')]: {
             width: "250px",
@@ -104,18 +113,32 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: "10px",
         marginTop: "10px",
         borderBottom: "1px solid gray",
+        margin: "0 -30px",
         "& > *": {
             margin: "2px"
         },
         [theme.breakpoints.up('md')]: {
             justifyContent: "flex-start",
+            margin: "10px 0"
         },
     },
     info: {
+        width: "70%",
         display: "flex",
         flexDirection: "column",
         [theme.breakpoints.up('md')]: {
             textAlign: "left"
+        },
+    },
+    backgroundBreakpoint: {
+        backgroundColor: "#171717",
+        margin: "0 -150px 30px -150px",
+        padding: "0 150px 30px 150px",
+        [theme.breakpoints.up('md')]: {
+            backgroundColor: "transparent",
+        },
+        [theme.breakpoints.down('sm')]: {
+            padding: "0 110px",
         },
     },
 
@@ -195,9 +218,9 @@ function SingleMovieContent(props) {
                                     <span style={{ opacity: ".5" }}>/10</span>
 
                                 </div>
-                                <div>
+                                <div className={classes.backgroundBreakpoint}>
                                     <h2>Overview</h2>
-                                    <p>{content.overview}</p>
+                                    <p >{content.overview}</p>
                                 </div>
                             </div>
                         </div>
