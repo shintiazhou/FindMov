@@ -21,6 +21,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.carousel-container {
+  width: 100%;
+}
 
 * {
   box-sizing: border-box;

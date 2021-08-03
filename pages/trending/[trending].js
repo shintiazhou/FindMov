@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import MovieCollection from "../../components/MovieCollection"
 import styles from "../../styles/trending.module.css"
-
+import { CircularProgress } from '@material-ui/core';
 
 export default function Home() {
     const router = useRouter()
@@ -22,21 +22,22 @@ export default function Home() {
     const [firstPage, secPage] = pages
 
     useEffect(() => {
+        if (firstPage && secPage) {
+            const fetchApi = async () => {
+                // fetch first page to merge
+                const req = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${firstPage}`)
+                const page1 = await req.json()
+                // fetch second page to merge
+                const req2 = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${secPage}`)
+                const page2 = await req2.json()
+                // merge both page
 
-        const fetchApi = async () => {
-            // fetch first page to merge
-            const req = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${firstPage}`)
-            const page1 = await req.json()
-            // fetch second page to merge
-            const req2 = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${secPage}`)
-            const page2 = await req2.json()
-            // merge both page
-            if (req) {
-                setPage(page1.results.concat(page2.results))
+                req && setPage(page1.results.concat(page2.results))
+
             }
-
+            fetchApi()
         }
-        fetchApi()
+
         return () => setPage(null) // when unmount
     }, [router.query.trending, timeWindow])
 
@@ -57,7 +58,14 @@ export default function Home() {
             </header>
             <main>
                 {page ? <MovieCollection collection={page} /> :
-                    <h1>Loading</h1>
+                    <div style={{
+                        height: "110vw",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}>
+                        <CircularProgress color="secondary" />
+                    </div>
                 }
             </main>
             <nav>

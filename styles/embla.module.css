@@ -1,0 +1,152 @@
+.embla {
+  padding: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__viewport.is-draggable {
+  cursor: move;
+  cursor: grab;
+}
+
+.embla__viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.embla__container {
+  display: flex;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  margin-left: -10px;
+}
+
+.embla__slide {
+  min-width: 50%;
+  padding-left: 10px;
+}
+
+.embla__slide__img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.embla__slide__inner {
+  margin: 30px 0;
+}
+
+@media (min-width: 500px) {
+  .embla__slide {
+    min-width: 40%;
+  }
+}
+@media (min-width: 768px) {
+  .embla__slide {
+    min-width: 25%;
+  }
+}
+@media (min-width: 960px) {
+  .embla__slide {
+    min-width: 20%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .embla__slide {
+    min-width: 18%;
+  }
+}
+@media (min-width: 1900px) {
+  .embla__slide {
+    min-width: 10%;
+  }
+}
+
+.embla__slide__data {
+  height: 100px;
+  color: black;
+  padding: 8px;
+  font-weight: bold;
+}
+.embla__slide__charName {
+  font-weight: normal;
+  font-size: small;
+}
+
+.embla__button {
+  outline: 0;
+  cursor: pointer;
+  background-color: transparent;
+  touch-action: manipulation;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  fill: #1bcacd;
+  padding: 0;
+}
+
+.embla__button:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+
+.embla__button__svg {
+  width: 100%;
+  fill: white;
+  height: 100%;
+}
+@media (max-width: 768px) {
+  .embla__button__svg {
+    display: none;
+  }
+}
+
+.embla__button__prev {
+  outline: 0;
+  cursor: pointer;
+  background-color: transparent;
+  touch-action: manipulation;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  fill: #1bcacd;
+  padding: 0;
+  left: 27px;
+}
+
+.embla__button__next {
+  outline: 0;
+  cursor: pointer;
+  background-color: transparent;
+  touch-action: manipulation;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  fill: #1bcacd;
+  padding: 0;
+  right: 27px;
+}

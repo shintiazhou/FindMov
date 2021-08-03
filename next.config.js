@@ -1,5 +1,4 @@
 module.exports = {
-  reactStrictMode: true,
   env: {
     apiKey: "b4d716b5b9583975e5b0f9f8144bbdca"
   },

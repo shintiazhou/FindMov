@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import { img_300, loadingImg, unavailable } from "../config/imgConfig"
+import { img_300, loadingImg } from "../config/imgConfig"
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
@@ -66,7 +66,7 @@ function MovieItem(props) {
     const [itemInfo, setItemInfo] = useState(null)
 
     //fake loading
-    setTimeout(() => { setImage(props.item.poster_path ? `${img_300}${props.item.poster_path}` : unavailable) }, 1000)
+    setTimeout(() => { setImage(props.item.poster_path ? `${img_300}${props.item.poster_path}` : loadingImg) }, 500)
 
     const typeAndId = itemInfo ? itemInfo.split(" ") : null
 
