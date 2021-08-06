@@ -19,7 +19,9 @@ function MovieCollection(props) {
         <div className={classes.root}>
             <Grid justifyContent="flex-start"
                 container >
-                {props.collection && props.collection.map(item => <MovieItem item={item} key={item.id} />)}
+                {props.collection && props.collection.map((item) => <MovieItem
+                    route={props.routeName}
+                    item={item} key={item.id} />)}
             </Grid>
 
 

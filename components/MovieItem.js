@@ -69,7 +69,6 @@ function MovieItem(props) {
     setTimeout(() => { setImage(props.item.poster_path ? `${img_300}${props.item.poster_path}` : loadingImg) }, 500)
 
     const typeAndId = itemInfo ? itemInfo.split(" ") : null
-
     return (
         <>
             <Grid item lg={2} md={3} sm={4} xs={6} className={classes.root}>
@@ -80,7 +79,7 @@ function MovieItem(props) {
                         setOpen(true)
                     }}
                     className={classes.container}
-                    id={props.item.id + ' ' + props.item.media_type}
+                    id={props.item.id + ' ' + (props.item.media_type ? props.item.media_type : "movie")}
                 >
                     <img
                         width="100%"

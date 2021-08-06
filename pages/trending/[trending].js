@@ -5,19 +5,14 @@ import { useRouter } from "next/router"
 import MovieCollection from "../../components/MovieCollection"
 import styles from "../../styles/trending.module.css"
 import { CircularProgress } from '@material-ui/core';
+import { secondPageMerge } from "../../utils/functions"
 
-export default function Home() {
+export default function Trending() {
     const router = useRouter()
     const [page, setPage] = useState(null)
     const [timeWindow, setTimeWindow] = useState("day")
 
-    // basic math to merge first and second page so it shows more collection of movies
-    const secondPageMerge = (x) => {
-        const value = parseInt(x)
-        const firstPage = (value - 1) + value
-        const secondPage = value * 2
-        return [firstPage, secondPage]
-    }
+
     const pages = secondPageMerge(router.query.trending)
     const [firstPage, secPage] = pages
 

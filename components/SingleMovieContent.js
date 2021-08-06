@@ -150,7 +150,7 @@ function SingleMovieContent(props) {
     const [content, setContent] = useState({})
     const [image, setImage] = useState(loadingImg)
 
-
+    console.log(props.arr)
     useEffect(() => {
         if (props.arr) {
             const fetchApi = async () => {

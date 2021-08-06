@@ -10,7 +10,10 @@ const useStyles = makeStyles((theme) => ({
     },
     root: {
         backgroundColor: "#171717",
-
+        [theme.breakpoints.up('md')]: {
+            margin: "20px -30px",
+            padding: "0 30px",
+        },
     },
     writers: {
         display: "flex",
@@ -49,6 +52,7 @@ function Credit({ media_type, id }) {
             }
             fetchApi()
         }
+        return () => setCredits(null)
     }, []);
     const writerArr = credits && credits.crew.filter(v => v.department === "Writing")
 
@@ -88,9 +92,9 @@ function Credit({ media_type, id }) {
                 <div className={classes.writers}>
                     {writers && writers.map(v => {
                         return <div className={classes.writer}>
-                            {v.name}
+                            {v.name && v.name}
                             <div className={classes.jobs}>
-                                {filterJob(v.name)}
+                                {v.name && filterJob(v.name)}
                             </div>
 
                         </div>
