@@ -7,24 +7,6 @@ import LiveTvIcon from '@material-ui/icons/LiveTv';
 import TheatersIcon from '@material-ui/icons/Theaters';
 import Link from "next/link"
 
-const useStyles = makeStyles({
-    root: {
-        width: "100%",
-        position: "fixed",
-        zIndex: 99,
-        bottom: 0,
-        backgroundColor: "#171717",
-
-    },
-    action: {
-        color: "white",
-    },
-    clickedColor: {
-        color: "#DA0037",
-        paddingBottom: "6px"
-    }
-
-});
 
 export default function BottomNav() {
     const classes = useStyles();
@@ -66,3 +48,21 @@ export default function BottomNav() {
         </BottomNavigation>
     );
 }
+const useStyles = makeStyles({
+    root: {
+        width: "100%",
+        position: "fixed",
+        zIndex: 99,
+        bottom: 0,
+        backgroundColor: "#171717",
+
+    },
+    action: {
+        color: "white",
+    },
+    clickedColor: {
+        color: "#DA0037",
+        paddingBottom: "6px"
+    }
+
+});

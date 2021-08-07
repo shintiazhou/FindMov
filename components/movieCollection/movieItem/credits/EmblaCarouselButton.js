@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/embla.module.css"
+import styles from "../../../../styles/embla.module.css"
 
 export const PrevButton = ({ enabled, onClick }) => (
     <button

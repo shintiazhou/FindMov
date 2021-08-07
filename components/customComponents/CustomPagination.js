@@ -3,6 +3,48 @@ import { usePagination } from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from "next/link"
 
+export default function UsePagination(props) {
+    const classes = useStyles();
+    const { items } = usePagination({
+        count: 40, //pagination max number
+    });
+
+    return (
+        <nav>
+            <ul className={classes.ul}>
+                {items.map(({ page, type, selected, ...item }, index) => {
+                    let children = null;
+                    //some conditional to jump to last page or first page
+                    if (type === 'start-ellipsis' || type === 'end-ellipsis') {
+                        children = '…';
+                    } else if (type === 'page') {
+                        children = (
+                            <Link href={`/${props.categories}/${page}`}>
+                                <a className={selected ? classes.selectedLink : classes.link} {...item}>
+                                    {page}
+                                </a>
+                            </Link>
+
+                        );
+                    } else {
+                        // previous and next button
+                        children = (
+                            <Link href={`/${props.categories}/${page}`}>
+                                <a className={classes.previousNext}  {...item}>
+                                    {type}
+                                </a>
+                            </Link>
+
+                        );
+                    }
+
+                    return <li key={index}>{children}</li>;
+                })}
+            </ul>
+        </nav>
+    );
+}
+
 const useStyles = makeStyles({
     ul: {
         listStyle: 'none',
@@ -27,44 +69,3 @@ const useStyles = makeStyles({
         borderRadius: "15px"
     }
 });
-
-export default function UsePagination(props) {
-    const classes = useStyles();
-    const { items } = usePagination({
-        count: 40,
-    });
-
-    return (
-        <nav>
-            <ul className={classes.ul}>
-                {items.map(({ page, type, selected, ...item }, index) => {
-                    let children = null;
-
-                    if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-                        children = '…';
-                    } else if (type === 'page') {
-                        children = (
-                            <Link href={`/${props.categories}/${page}`}>
-                                <a className={selected ? classes.selectedLink : classes.link} {...item}>
-                                    {page}
-                                </a>
-                            </Link>
-
-                        );
-                    } else {
-                        children = (
-                            <Link href={`/${props.categories}/${page}`}>
-                                <a className={classes.previousNext}  {...item}>
-                                    {type}
-                                </a>
-                            </Link>
-
-                        );
-                    }
-
-                    return <li key={index}>{children}</li>;
-                })}
-            </ul>
-        </nav>
-    );
-}

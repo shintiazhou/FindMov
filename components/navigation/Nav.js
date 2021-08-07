@@ -7,6 +7,42 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
 
+
+
+export default function Nav() {
+    const classes = useStyles();
+    return (
+        <div className={classes.root}>
+            <AppBar position="fixed" color="secondary">
+                <Toolbar>
+                    <div className={classes.title}>
+                        <MovieFilterIcon />
+                        <Typography variant="h6" noWrap>
+                            MovFind
+                        </Typography>
+
+                    </div>
+
+
+                    <div className={classes.search}>
+                        <div className={classes.searchIcon}>
+                            <SearchIcon />
+                        </div>
+                        <InputBase
+                            placeholder="Search…"
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </div>
+                </Toolbar>
+            </AppBar>
+        </div>
+    );
+}
+
 // just some material ui styles
 const useStyles = makeStyles((theme) => ({
 
@@ -59,38 +95,3 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-
-
-export default function Nav() {
-    const classes = useStyles();
-    return (
-        <div className={classes.root}>
-            <AppBar position="fixed" color="secondary">
-                <Toolbar>
-                    <div className={classes.title}>
-                        <MovieFilterIcon />
-                        <Typography variant="h6" noWrap>
-                            MovFind
-                        </Typography>
-
-                    </div>
-
-
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </div>
-                </Toolbar>
-            </AppBar>
-        </div>
-    );
-}

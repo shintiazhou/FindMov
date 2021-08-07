@@ -1,6 +1,6 @@
 import styles from "../styles/layout.module.css"
-import Nav from "./Nav"
-import BottomNav from "./BottomNav"
+import Nav from "./navigation/Nav"
+import BottomNav from "./navigation/BottomNav"
 
 const Layout = ({ children }) => {
     return (

@@ -2,26 +2,6 @@ import { useState } from "react"
 import { makeStyles, } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles(() => ({
-    button: {
-        margin: "5px 5px",
-    },
-    selected: {
-        margin: "5px 5px",
-        backgroundColor: "#DA0037",
-        color: "white",
-        '&:hover': {
-            backgroundColor: "rgba(218, 0, 55,.8)"
-        }
-    },
-    buttonSecondary: {
-        margin: "2px 5px",
-        width: "100%",
-        justifyContent: "flex-start",
-        textTransform: "capitalize"
-    },
-}))
-
 
 function CustomButton(props) {
     const classes = useStyles()
@@ -39,6 +19,7 @@ function CustomButton(props) {
 
     return (
         <div>
+            {/* secondary = for sort component */}
             {props.secondary ?
                 <Button
                     id={props.id}
@@ -59,5 +40,25 @@ function CustomButton(props) {
         </div >
     )
 }
+
+const useStyles = makeStyles(() => ({
+    button: {
+        margin: "5px 5px",
+    },
+    selected: {
+        margin: "5px 5px",
+        backgroundColor: "#DA0037",
+        color: "white",
+        '&:hover': {
+            backgroundColor: "rgba(218, 0, 55,.8)"
+        }
+    },
+    buttonSecondary: {
+        margin: "2px 5px",
+        width: "100%",
+        justifyContent: "flex-start",
+        textTransform: "capitalize"
+    },
+}))
 
 export default CustomButton

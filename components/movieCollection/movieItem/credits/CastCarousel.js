@@ -2,18 +2,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { PrevButton, NextButton } from "./EmblaCarouselButton";
 import { useEmblaCarousel } from "embla-carousel/react";
-import { img_300, noPicture, loadingImg } from "../config/imgConfig"
-import styles from "../styles/embla.module.css"
+import { img_300, noPicture, loadingImg } from "../../../../config/imgConfig"
+import styles from "../../../../styles/embla.module.css"
 import Paper from '@material-ui/core/Paper';
 
 const EmblaCarousel = ({ slides, castData }) => {
 
-    //some carousel settings
+    //some carousel settings from embla carousel codesandbox
     const [viewportRef, embla] = useEmblaCarousel({
         dragFree: true,
         containScroll: "trimSnaps"
     });
-
     const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
     const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
     const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
@@ -25,11 +24,13 @@ const EmblaCarousel = ({ slides, castData }) => {
         setNextBtnEnabled(embla.canScrollNext());
     }, [embla]);
 
+
     useEffect(() => {
         if (!embla) return;
         embla.on("select", onSelect);
         onSelect();
     }, [embla, onSelect]);
+
 
     //img array
     const media = castData && castData.map(v => v.profile_path ? img_300 + v.profile_path : noPicture)
