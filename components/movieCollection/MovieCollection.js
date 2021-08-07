@@ -22,7 +22,8 @@ function MovieCollection(props) {
 const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
-        width: "99%"
+        width: "98%",
+        marginLeft: "10px"
     },
     loading: {
         backgroundColor: "gray"

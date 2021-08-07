@@ -1,123 +1,15 @@
-import Head from 'next/head'
-import { useState, useEffect } from "react"
-import { makeStyles } from '@material-ui/core/styles';
-import CustomDropDown from '../../components/customComponents/CustomDropDown';
+import React from 'react'
 import { useRouter } from "next/router"
-import { secondPageMerge } from "../../utils/functions"
-import { CircularProgress } from '@material-ui/core';
-import MovieCollection from "../../components/movieCollection/MovieCollection"
-import CustomPagination from "../../components/customComponents/CustomPagination"
+import CreatePage from "../../components/customComponents/CreatePage"
 
-
-const sortBy = ["popularity.desc", "release_date.desc", "vote_average.desc", "vote_count.desc"]
-
-const useStyles = makeStyles(() => ({
-    root: {
-        padding: "20px"
-    },
-}))
-
-
-export default function Tv() {
+function tv() {
     const router = useRouter()
-    const classes = useStyles()
-    const [filterbyGenre, setFilterByGenre] = useState([])
-    const [genres, setGenres] = useState(null)
-    const [sort, setSort] = useState("popularity.desc")
-    const [page, setPage] = useState(null)
-
-
-
-    const setGenreName = (e) => {
-        //find component or parents component with an id of genre name
-        let id = e.target.id ? e.target.id : e.target.parentElement.id
-        let arr = filterbyGenre.map(v => v.name)
-
-        id && (id.includes(".") ?
-            setSort(id) :
-            (arr.includes(id) ? setFilterByGenre(filterbyGenre.filter(v => v.name !== id)) : setFilterByGenre([...filterbyGenre, ...genres.filter(v => v.name == id)
-            ])))
-
-    }
-
-    //merge page
-    const pages = secondPageMerge(router.query.tv)
-    const [firstPage, secPage] = pages
-
-    useEffect(() => {
-        // fetch all genre available
-        const getGenres = async () => {
-            const req = await fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${process.env.apiKey}&language=en-US`)
-            const genres = await req.json()
-            setGenres(genres.genres)
-        }
-        getGenres()
-
-        if (firstPage && secPage) {
-            const fetchApi = async () => {
-                const req = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${firstPage}&${filterbyGenre && "with_genres=" + filterbyGenre.map(v => v.id).toString()}`)
-                const page1 = await req.json()
-
-                const req2 = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${secPage}&${filterbyGenre && "with_genres=" + filterbyGenre.map(v => v.id).toString()}`)
-                const page2 = await req2.json()
-
-                req && setPage(page1.results.concat(page2.results))
-            }
-
-            fetchApi()
-        }
-
-
-
-    }, [filterbyGenre, sort, router.query.tv])
 
     return (
-        <div
-            className={classes.root}>
-            <Head>
-                <title>Browse Tv Series - MovFind</title>
-                <meta name="description" content=" filter by genre, watch trailers, Find films you didn't know you were looking for." />
-            </Head>
-
-            <header>
-                <h1>Browse Tv Series</h1>
-                <div
-                    onClick={setGenreName}
-                    style={{ display: "flex", justifyContent: "space-between" }}>
-
-                    <CustomDropDown
-                        array={genres && genres.map(v => v.name)}
-                        placeholder="Genre" />
-
-                    <CustomDropDown
-                        secondary
-                        array={sortBy}
-                        placeholder="Sort By" />
-                </div>
-            </header>
-
-            <main
-                style={{ margin: "30px -30px" }}
-            >
-                {page ? <MovieCollection
-                    routeName="tv"
-                    collection={page} /> :
-                    <div
-                        style={{
-                            height: "110vw",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}
-                    >
-                        <CircularProgress color="secondary" />
-                    </div>
-                }
-            </main>
-            <nav>
-                <CustomPagination categories="tv" />
-            </nav>
-
+        <div>
+            <CreatePage type="movie" route={router.query.tv} title="Discover Tv Series" />
         </div>
     )
 }
+
+export default tv
