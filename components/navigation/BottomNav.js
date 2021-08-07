@@ -38,7 +38,7 @@ export default function BottomNav() {
                     label="Trending" icon={<WhatshotIcon />} />
             </Link>
 
-            <Link href="/series/1">
+            <Link href="/tv/1">
                 <BottomNavigationAction
                     onClick={() => setClicked({ b1: false, b2: false, b3: true })}
                     className={clicked.b3 ? classes.clickedColor : classes.action}

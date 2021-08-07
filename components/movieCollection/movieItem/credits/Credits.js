@@ -10,7 +10,6 @@ function Credit({ media_type, id }) {
     //slide for carousel (pass in to props)
     const SLIDE_COUNT = 10;
     const slides = Array.from(Array(SLIDE_COUNT).keys());
-
     useEffect(() => {
         if (media_type) {
             const fetchApi = async () => {
@@ -28,6 +27,9 @@ function Credit({ media_type, id }) {
 
     //filter director
     const director = credits && credits.crew.filter(v => v.job === "Director")
+
+    //filter creator (tv series)
+    const creator = credits && credits.crew.filter(v => v.job === "Executive Producer" && v.known_for_department === "Writing")
 
     //remove duplicates of writers name
     const writers = writerArr && writerArr.filter((v, i, self) =>
@@ -47,6 +49,8 @@ function Credit({ media_type, id }) {
             )
         })
     }
+    const setCreator = creator && creator.length !== 0 ? creator[0].name : "-"
+    const setDirector = director && director.length !== 0 ? director[0].name : "-"
 
     return (
         <div className={classes.root}>
@@ -58,10 +62,9 @@ function Credit({ media_type, id }) {
                         borderTop: "1px solid gray"
                     }}
                 >
-                    Director:
-
+                    {setCreator !== "-" ? "Creator:" : "Director:"}
                     <span className={classes.director}>
-                        {director && director.length !== 0 ? director[0].name : "-"}
+                        {setCreator !== "-" ? setCreator : setDirector}
                     </span>
 
                 </h3>
