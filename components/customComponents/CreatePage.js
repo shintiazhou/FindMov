@@ -6,17 +6,19 @@ import MovieCollection from "../movieCollection/MovieCollection"
 import CustomPagination from "./CustomPagination"
 import styles from "../../styles/trending.module.css"
 
+
+
 const sortBy = ["popularity.desc", "release_date.desc", "vote_average.desc", "vote_count.desc"]
 
-
 export default function CreatePage({ type, route, title }) {
+
     const [filterbyGenre, setFilterByGenre] = useState([])
     const [genres, setGenres] = useState(null)
     const [sort, setSort] = useState("popularity.desc")
     const [page, setPage] = useState(null)
     const [timeWindow, setTimeWindow] = useState("day")
 
-
+    //genre
     const setGenreName = (e) => {
         //find component or parents component with an id of genre name
         let id = e.target.id ? e.target.id : e.target.parentElement.id
@@ -28,17 +30,18 @@ export default function CreatePage({ type, route, title }) {
             ])))
 
     }
+
+    //merge page
     const secondPageMerge = (x) => {
         const value = parseInt(x)
         const firstPage = (value - 1) + value
         const secondPage = value * 2
         return [firstPage, secondPage]
     }
-
-    //merge page
     const pages = secondPageMerge(route)
     const [firstPage, secPage] = pages
 
+    // url
     let getUrl = (page) => {
         if (type !== "trending") {
             return `https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}&${filterbyGenre && "with_genres=" + filterbyGenre.map(v => v.id).toString()}`
@@ -58,7 +61,7 @@ export default function CreatePage({ type, route, title }) {
             }
             getGenres()
         }
-
+        //fetch start
         if (firstPage && secPage) {
             const fetchApi = async () => {
                 const req = await fetch(getUrl(firstPage))
@@ -73,7 +76,7 @@ export default function CreatePage({ type, route, title }) {
 
             fetchApi()
         }
-
+        //when unmount
         return () => setPage(null)
 
     }, [filterbyGenre, sort, timeWindow, route])
@@ -85,6 +88,7 @@ export default function CreatePage({ type, route, title }) {
                 <meta name="description" content=" filter by genre, watch trailers, Find films you didn't know you were looking for." />
             </Head>
 
+            {/* for trending */}
             {type === "trending" ? <header>
                 <h1 className={styles.title}>Trending </h1>
 
@@ -96,6 +100,8 @@ export default function CreatePage({ type, route, title }) {
                 </ul>
             </header>
                 :
+
+                // for movie and tv
                 <header>
                     <h1>{title}</h1>
                     <div
@@ -113,9 +119,8 @@ export default function CreatePage({ type, route, title }) {
                     </div>
                 </header>}
 
-            <main
-                style={{ margin: "30px -30px" }}
-            >
+            {/* collections */}
+            <main style={{ margin: "30px -30px" }} >
                 {page ? <MovieCollection
                     routeName={type}
                     collection={page} /> :
