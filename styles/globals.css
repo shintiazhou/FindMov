@@ -29,10 +29,6 @@ a {
   box-sizing: border-box;
 }
 
-html {
-  background-color: #171717;
-  color: white;
-}
 ul {
   list-style: none;
 }
@@ -45,4 +41,7 @@ footer {
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+}
+#__next {
+  background-color: #171717;
 }

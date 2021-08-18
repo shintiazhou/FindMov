@@ -112,6 +112,7 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         backgroundColor: "#171717",
+        color: "white",
         height: "80%",
         width: "80%",
         position: "relative",
@@ -140,7 +141,7 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
         [theme.breakpoints.down('md')]: {
             backgroundPosition: "10% 0%",
-            height: "80%",
+            height: "85%",
         },
         [theme.breakpoints.down('xs')]: {
             height: "90%",
