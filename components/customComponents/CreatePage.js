@@ -69,7 +69,6 @@ export default function CreatePage({ type, route, title }) {
 
                 const req2 = await fetch(getUrl(secPage))
                 const page2 = await req2.json()
-                console.log(page1, page2)
                 //merge page
                 req2 && setPage(page1.results.concat(page2.results))
             }
@@ -80,7 +79,6 @@ export default function CreatePage({ type, route, title }) {
         return () => setPage(null)
 
     }, [filterbyGenre, sort, timeWindow, route])
-
     return (
         <div style={{ padding: "30px" }}>
             <Head>
@@ -143,3 +141,12 @@ export default function CreatePage({ type, route, title }) {
         </div>
     )
 }
+// export async function getStaticProps() {
+//     const key = process.env.API_KEY
+//     console.log(key)
+//     return {
+//         props: {
+//             key
+//         }
+//     }
+// }
