@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from "next/router"
 import CreatePage from "../../components/customComponents/CreatePage"
 
-function trending() {
+function Trending() {
     const router = useRouter()
 
     return (
@@ -12,4 +12,4 @@ function trending() {
     )
 }
 
-export default trending
+export default Trending

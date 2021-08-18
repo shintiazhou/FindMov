@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from "next/router"
 import CreatePage from "../../components/customComponents/CreatePage"
 
-function movies() {
+function Movies() {
     const router = useRouter()
 
     return (
@@ -12,4 +12,4 @@ function movies() {
     )
 }
 
-export default movies
+export default Movies

@@ -1,7 +1,7 @@
 import styles from "../styles/layout.module.css"
 import Nav from "./navigation/Nav"
 import BottomNav from "./navigation/BottomNav"
-
+import Footer from "./Footer"
 const Layout = ({ children }) => {
     return (
         <>
@@ -14,6 +14,9 @@ const Layout = ({ children }) => {
             <nav>
                 <BottomNav />
             </nav>
+            <footer>
+                <Footer />
+            </footer>
 
         </>
     )

@@ -36,3 +36,13 @@ html {
 ul {
   list-style: none;
 }
+
+footer {
+  background-color: #da0037;
+  padding: 10px 0;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
