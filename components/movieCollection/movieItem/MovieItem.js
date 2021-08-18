@@ -40,7 +40,7 @@ function MovieItem(props) {
                         alt={`${titleName}`} />
                     <div className={classes.titleOverlay} />
 
-                    <h1 className={classes.title}>{titleName}</h1>
+                    <h2 className={classes.title}>{titleName}</h2>
                     <span className={classes.rating}>{props.item.vote_average}</span>
                 </div>
             </Grid>

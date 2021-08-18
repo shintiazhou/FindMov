@@ -23,16 +23,25 @@ export default function CreatePage({ type, route, title }) {
         //find component or parents component with an id of genre name
         let id = e.target.id ? e.target.id : e.target.parentElement.id
         let arr = filterbyGenre.map(v => v.name)
-
         id && (id.includes(".") ?
             setSort(id) :
             (arr.includes(id) ? setFilterByGenre(filterbyGenre.filter(v => v.name !== id)) : setFilterByGenre([...filterbyGenre, ...genres.filter(v => v.name == id)
             ])))
 
     }
+    // url
+    let getUrl = (page) => {
+        if (type !== "trending") {
+            return `https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}&${filterbyGenre && "with_genres=" + filterbyGenre.map(v => v.id).toString()}`
+
+        }
+        return `https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${page}`
+
+    }
 
 
     useEffect(() => {
+        console.log(filterbyGenre, sort)
         //merge page
         const secondPageMerge = (x) => {
             const value = parseInt(x)
@@ -42,17 +51,6 @@ export default function CreatePage({ type, route, title }) {
         }
         const pages = secondPageMerge(route)
         const [firstPage, secPage] = pages
-
-
-        // url
-        let getUrl = (page) => {
-            if (type !== "trending") {
-                return `https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}&${filterbyGenre && "with_genres=" + filterbyGenre.map(v => v.id).toString()}`
-
-            }
-            return `https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${page}`
-
-        }
 
         // fetch all genre available for tv and movies
         if (type !== "trending") {
@@ -82,7 +80,7 @@ export default function CreatePage({ type, route, title }) {
 
     }, [type, filterbyGenre, sort, timeWindow, route])
 
-    console.log
+
     return (
         <div style={{ padding: "30px" }}>
             <Head>

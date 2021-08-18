@@ -17,7 +17,7 @@ export default function Nav() {
                 <Toolbar>
                     <div className={classes.title}>
                         <MovieFilterIcon />
-                        <Typography variant="h6" noWrap>
+                        <Typography variant="span" noWrap>
                             MovFind
                         </Typography>
 

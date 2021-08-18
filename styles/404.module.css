@@ -1,0 +1,19 @@
+.root {
+  height: 70vh;
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.header {
+  font-size: 50px;
+  font-weight: 500;
+  margin: 20px;
+}
+.link {
+  font-size: 20px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+}

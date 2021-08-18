@@ -60,13 +60,13 @@ function SingleMovieContent(props) {
                             </div>
 
                             <div className={classes.info} >
-                                <h1 className={classes.title}>
+                                <p className={classes.title}>
                                     {content.title ? content.title : content.name}
 
                                     <span className={classes.year}>
                                         {" "}({year})
                                     </span>
-                                </h1>
+                                </p>
                                 <span>{duration()}</span>
                                 <div className={classes.genres}>
                                     {content.genres.map((genre, i) => i == content.genres.length - 1 ? genre.name :

@@ -56,8 +56,10 @@ function Credit({ media_type, id }) {
     return (
         <div className={classes.root}>
             <div style={{ paddingLeft: "10px" }}>
-                <h3
+                <p
                     style={{
+                        fontWeight: "500",
+                        fontSize: "17px",
                         padding: "10px 0",
                         borderBottom: "1px solid gray",
                         borderTop: "1px solid gray"
@@ -68,7 +70,7 @@ function Credit({ media_type, id }) {
                         {setCreator !== "-" ? setCreator : setDirector}
                     </span>
 
-                </h3>
+                </p>
                 <div className={classes.writers}>
                     {writers && writers.map((v, i) => {
                         return <div key={i} className={classes.writer}>
@@ -115,14 +117,16 @@ const useStyles = makeStyles((theme) => ({
     writer: {
         margin: "0 15px 15px 0",
         width: "200px",
-        fontWeight: "500"
+        fontWeight: "500",
+        fontSize: "17px",
     },
     jobs: {
         fontWeight: "200",
         opacity: ".8"
     },
     director: {
-        fontWeight: "400",
+        fontSize: "18px",
+        fontWeight: "500",
         marginLeft: "30px"
     }
 }), { index: 1 })
