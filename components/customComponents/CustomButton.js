@@ -59,6 +59,6 @@ const useStyles = makeStyles(() => ({
         justifyContent: "flex-start",
         textTransform: "capitalize"
     },
-}))
+}), { index: 1 })
 
 export default CustomButton

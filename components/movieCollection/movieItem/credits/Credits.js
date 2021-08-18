@@ -125,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: "400",
         marginLeft: "30px"
     }
-}))
+}), { index: 1 })
 
 
 export default Credit

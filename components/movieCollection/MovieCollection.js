@@ -28,6 +28,6 @@ const useStyles = makeStyles(() => ({
     loading: {
         backgroundColor: "gray"
     }
-}));
+}), { index: 1 });
 
 export default MovieCollection
