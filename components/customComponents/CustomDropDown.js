@@ -38,7 +38,7 @@ function CustomDropdown(props) {
                 <div className={props.placeholder === "Genre" ? classes.menuItems : classes.menuItemsSecondary}>
                     {props.array && props.array.map((v, i) => {
                         return <CustomButton
-                            id={v}
+                            id={i}
                             secondary={props.secondary}
                             key={i}
                             value={v.replace("_", " ").replace(".desc", "")} />

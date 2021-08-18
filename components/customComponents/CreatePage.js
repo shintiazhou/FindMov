@@ -31,27 +31,29 @@ export default function CreatePage({ type, route, title }) {
 
     }
 
-    //merge page
-    const secondPageMerge = (x) => {
-        const value = parseInt(x)
-        const firstPage = (value - 1) + value
-        const secondPage = value * 2
-        return [firstPage, secondPage]
-    }
-    const pages = secondPageMerge(route)
-    const [firstPage, secPage] = pages
-
-    // url
-    let getUrl = (page) => {
-        if (type !== "trending") {
-            return `https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}&${filterbyGenre && "with_genres=" + filterbyGenre.map(v => v.id).toString()}`
-
-        }
-        return `https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${page}`
-
-    }
 
     useEffect(() => {
+        //merge page
+        const secondPageMerge = (x) => {
+            const value = parseInt(x)
+            const firstPage = (value - 1) + value
+            const secondPage = value * 2
+            return [firstPage, secondPage]
+        }
+        const pages = secondPageMerge(route)
+        const [firstPage, secPage] = pages
+
+
+        // url
+        let getUrl = (page) => {
+            if (type !== "trending") {
+                return `https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.apiKey}&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}&${filterbyGenre && "with_genres=" + filterbyGenre.map(v => v.id).toString()}`
+
+            }
+            return `https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${process.env.apiKey}&page=${page}`
+
+        }
+
         // fetch all genre available for tv and movies
         if (type !== "trending") {
             const getGenres = async () => {
@@ -61,6 +63,7 @@ export default function CreatePage({ type, route, title }) {
             }
             getGenres()
         }
+
         //fetch start
         if (firstPage && secPage) {
             const fetchApi = async () => {
@@ -78,7 +81,7 @@ export default function CreatePage({ type, route, title }) {
         //when unmount
         return () => setPage(null)
 
-    }, [filterbyGenre, sort, timeWindow, route])
+    }, [type, filterbyGenre, sort, timeWindow, route])
     return (
         <div style={{ padding: "30px" }}>
             <Head>

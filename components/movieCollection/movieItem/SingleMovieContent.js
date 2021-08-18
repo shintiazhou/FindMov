@@ -22,7 +22,7 @@ function SingleMovieContent(props) {
             fetchApi()
         }
         return () => setContent({})
-    }, [])
+    }, [props.arr])
 
     //fake loading
     setTimeout(() => { setImage(content.poster_path ? `${img_300 + content.poster_path}` : loadingImg) }, 500)

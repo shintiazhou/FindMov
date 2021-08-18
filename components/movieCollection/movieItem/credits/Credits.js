@@ -10,6 +10,7 @@ function Credit({ media_type, id }) {
     //slide for carousel (pass in to props)
     const SLIDE_COUNT = 10;
     const slides = Array.from(Array(SLIDE_COUNT).keys());
+
     useEffect(() => {
         if (media_type) {
             const fetchApi = async () => {
@@ -20,7 +21,7 @@ function Credit({ media_type, id }) {
             fetchApi()
         }
         return () => setCredits(null)
-    }, []);
+    }, [id, media_type]);
 
     //filter writer from crew array
     const writerArr = credits && credits.crew.filter(v => v.department === "Writing")
@@ -43,7 +44,7 @@ function Credit({ media_type, id }) {
         const filterJob = writerArr && writerArr.filter(v => v.name == name)
         return filterJob && filterJob.map((v, i) => {
             return (
-                <span>
+                <span key={i}>
                     {v.job}{i !== filterJob.length - 1 && ", "}
                 </span>
             )
@@ -69,8 +70,8 @@ function Credit({ media_type, id }) {
 
                 </h3>
                 <div className={classes.writers}>
-                    {writers && writers.map(v => {
-                        return <div className={classes.writer}>
+                    {writers && writers.map((v, i) => {
+                        return <div key={i} className={classes.writer}>
                             {v.name && v.name}
                             <div className={classes.jobs}>
                                 {v.name && filterJob(v.name)}

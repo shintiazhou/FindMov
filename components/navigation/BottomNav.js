@@ -22,7 +22,7 @@ export default function BottomNav() {
             showLabels
             className={classes.root}>
 
-            <Link href="/movies/1">
+            <Link href="/movies/1" passHref={true}>
                 <BottomNavigationAction
                     onClick={() => setClicked({ b1: true, b2: false, b3: false })}
                     showLabel={true}
@@ -30,7 +30,7 @@ export default function BottomNav() {
                     label="Movies" icon={<TheatersIcon />} />
             </Link>
 
-            <Link href="/trending/1">
+            <Link href="/trending/1" passHref={true}>
                 <BottomNavigationAction
                     onClick={() => setClicked({ b1: false, b2: true, b3: false })}
                     className={clicked.b2 ? classes.clickedColor : classes.action}
@@ -38,7 +38,7 @@ export default function BottomNav() {
                     label="Trending" icon={<WhatshotIcon />} />
             </Link>
 
-            <Link href="/tv/1">
+            <Link href="/tv/1" passHref={true}>
                 <BottomNavigationAction
                     onClick={() => setClicked({ b1: false, b2: false, b3: true })}
                     className={clicked.b3 ? classes.clickedColor : classes.action}
