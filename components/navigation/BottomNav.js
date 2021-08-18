@@ -22,12 +22,12 @@ export default function BottomNav() {
             showLabels
             className={classes.root}>
 
-            <Link href="/movies/1" passHref={true}>
+            <Link href="/movie/1" passHref={true}>
                 <BottomNavigationAction
                     onClick={() => setClicked({ b1: true, b2: false, b3: false })}
                     showLabel={true}
                     className={clicked.b1 ? classes.clickedColor : classes.action}
-                    label="Movies" icon={<TheatersIcon />} />
+                    label="Movie" icon={<TheatersIcon />} />
             </Link>
 
             <Link href="/trending/1" passHref={true}>

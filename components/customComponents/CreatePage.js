@@ -69,7 +69,6 @@ export default function CreatePage({ type, route, title }) {
             const fetchApi = async () => {
                 const req = await fetch(getUrl(firstPage))
                 const page1 = await req.json()
-
                 const req2 = await fetch(getUrl(secPage))
                 const page2 = await req2.json()
                 //merge page
@@ -82,6 +81,8 @@ export default function CreatePage({ type, route, title }) {
         return () => setPage(null)
 
     }, [type, filterbyGenre, sort, timeWindow, route])
+
+    console.log
     return (
         <div style={{ padding: "30px" }}>
             <Head>
@@ -137,19 +138,10 @@ export default function CreatePage({ type, route, title }) {
                     </div>
                 }
             </main>
-            <nav>
+            <nav >
                 <CustomPagination categories={type} />
             </nav>
 
         </div>
     )
 }
-// export async function getStaticProps() {
-//     const key = process.env.API_KEY
-//     console.log(key)
-//     return {
-//         props: {
-//             key
-//         }
-//     }
-// }
